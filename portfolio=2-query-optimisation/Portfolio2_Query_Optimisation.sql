@@ -43,3 +43,28 @@ JOIN order_items oi
 JOIN products p
     ON oi.product_id = p.product_id
 ORDER BY o.order_id;
+-- QUERY 3: Create an index on product_name
+
+CREATE INDEX idx_products_product_name
+ON products(product_name);
+
+-- QUERY 4: Examine how MySQL searches by product name
+
+EXPLAIN
+SELECT *
+FROM products
+WHERE product_name = 'Fresh Tomatoes';
+
+-- QUERY 5: Retrieve the matching product
+
+SELECT *
+FROM products
+WHERE product_name = 'Fresh Tomatoes';
+EXPLAIN
+SELECT product_name, price
+FROM products
+WHERE category_id = 1;
+EXPLAIN ANALYZE
+SELECT product_name, price
+FROM products
+WHERE product_name = 'Fresh Tomatoes';
